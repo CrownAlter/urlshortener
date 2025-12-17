@@ -1,0 +1,10 @@
+target/
+.mvn/
+*.md
+.git
+.gitignore
+.gitattributes
+logs/
+*.log
+.DS_Store
+Thumbs.db
