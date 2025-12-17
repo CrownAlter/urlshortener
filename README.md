@@ -677,13 +677,9 @@ Deploy using Docker container to any cloud platform supporting containers. Confi
 
 ### Getting Help
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/urlshortener/issues)
-- **Questions**: [Discussions](https://github.com/yourusername/urlshortener/discussions)
-- **Email**: support@yourdomain.com
-
-### Contributing
-
-We welcome contributions! Please see our contributing guidelines.
+- **Issues**: [GitHub Issues](https://github.com/CrownAlter/urlshortener/issues)
+- **Questions**: [Discussions](https://github.com/CrownAlter/urlshortener/discussions)
+- **Email**: adewunmi7576@gmail.com
 
 ### License
 
@@ -719,9 +715,8 @@ This project is licensed under the MIT License - see LICENSE file for details.
 ## 📞 Contact
 
 **Project Maintainer**: Adewunmi  
-**Email**: contact@yourdomain.com  
-**GitHub**: [@yourusername](https://github.com/yourusername)  
-**Website**: https://yourdomain.com
+**Email**: adewunmi7576@gmail.com
+**GitHub**: [@yourusername](https://github.com/CrownAlter)
 
 ---
 
@@ -748,6 +743,6 @@ This project is licensed under the MIT License - see LICENSE file for details.
 
 **⭐ If you find this project useful, please consider giving it a star! ⭐**
 
-[Report Bug](https://github.com/yourusername/urlshortener/issues) • [Request Feature](https://github.com/yourusername/urlshortener/issues) • [Documentation](https://github.com/yourusername/urlshortener/wiki)
+[Report Bug](https://github.com/CrownAlter/urlshortener/issues) • [Request Feature](https://github.com/CrownAlter/urlshortener/issues) • [Documentation](https://github.com/CrownAlter/urlshortener/wiki)
 
 </div>
