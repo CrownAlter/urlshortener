@@ -39,7 +39,8 @@ public class DataSourceConfig {
             String username = userInfo[0];
             String password = userInfo[1];
             String host = dbUri.getHost();
-            int port = dbUri.getPort();
+            // Use default PostgreSQL port (5432) if not specified in URL
+            int port = dbUri.getPort() == -1 ? 5432 : dbUri.getPort();
             String database = dbUri.getPath().substring(1);
 
             String jdbcUrl = String.format("jdbc:postgresql://%s:%d/%s", host, port, database);
