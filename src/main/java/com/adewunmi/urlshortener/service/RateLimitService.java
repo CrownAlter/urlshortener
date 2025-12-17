@@ -3,8 +3,8 @@ package com.adewunmi.urlshortener.service;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.Refill;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -14,11 +14,20 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class RateLimitService {
 
     private final RedisTemplate<String, Object> redisTemplate;
+    private final boolean redisEnabled;
+
+    public RateLimitService(@Autowired(required = false) RedisTemplate<String, Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+        this.redisEnabled = redisTemplate != null;
+        
+        if (!redisEnabled) {
+            log.warn("Redis is not available. Rate limiting will use in-memory buckets only.");
+        }
+    }
 
     @Value("${rate.limit.enabled:true}")
     private boolean rateLimitEnabled;
@@ -108,17 +117,27 @@ public class RateLimitService {
 
     // Redis-based rate limiting (alternative implementation)
     public boolean checkRateLimitRedis(String key, int maxRequests, Duration window) {
-        String redisKey = "ratelimit:" + key;
-        Long currentCount = redisTemplate.opsForValue().increment(redisKey);
-
-        if (currentCount == null) {
-            currentCount = 0L;
+        if (!redisEnabled) {
+            log.warn("Redis not available for rate limiting, using in-memory buckets");
+            return true; // Fallback to allowing the request
         }
+        
+        try {
+            String redisKey = "ratelimit:" + key;
+            Long currentCount = redisTemplate.opsForValue().increment(redisKey);
 
-        if (currentCount == 1) {
-            redisTemplate.expire(redisKey, window);
+            if (currentCount == null) {
+                currentCount = 0L;
+            }
+
+            if (currentCount == 1) {
+                redisTemplate.expire(redisKey, window);
+            }
+
+            return currentCount <= maxRequests;
+        } catch (Exception e) {
+            log.error("Failed to check rate limit in Redis", e);
+            return true; // Fail open - allow the request
         }
-
-        return currentCount <= maxRequests;
     }
 }

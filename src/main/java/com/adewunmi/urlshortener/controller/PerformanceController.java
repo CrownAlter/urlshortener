@@ -1,6 +1,5 @@
 package com.adewunmi.urlshortener.controller;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +13,10 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api/admin")
-@RequiredArgsConstructor
 public class PerformanceController {
 
     @Autowired(required = false)
-    private final RedisTemplate<String, Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @GetMapping("/cache/stats")
     public ResponseEntity<Map<String, Object>> getCacheStats() {
