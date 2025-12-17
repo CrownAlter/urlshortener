@@ -716,7 +716,7 @@ This project is licensed under the MIT License - see LICENSE file for details.
 
 **Project Maintainer**: Adewunmi  
 **Email**: adewunmi7576@gmail.com
-**GitHub**: [@yourusername](https://github.com/CrownAlter)
+**GitHub**: [@CrownAlter](https://github.com/CrownAlter)
 
 ---
 
