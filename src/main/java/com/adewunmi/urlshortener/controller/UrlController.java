@@ -96,11 +96,6 @@ public class UrlController {
         return ResponseEntity.ok(urls);
     }
 
-    @GetMapping("/api/health")
-    public ResponseEntity<String> health() {
-        return ResponseEntity.ok("Service is running");
-    }
-
     private String getClientIp(HttpServletRequest request) {
         String ip = request.getHeader("X-Forwarded-For");
 
